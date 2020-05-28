@@ -84,13 +84,13 @@ namespace Microsoft.Net.Http.Headers
         public static CookieHeaderValue Parse(StringSegment input)
         {
             var index = 0;
-            return SingleValueParser.ParseValue(input, ref index);
+            return SingleValueParser.ParseValue(input, ref index)!;
         }
 
         public static bool TryParse(StringSegment input, [NotNullWhen(true)]out CookieHeaderValue? parsedValue)
         {
             var index = 0;
-            return SingleValueParser.TryParseValue(input, ref index, out parsedValue);
+            return SingleValueParser.TryParseValue(input, ref index, out parsedValue!);
         }
 
         public static IList<CookieHeaderValue> ParseList(IList<string> inputs)

@@ -14,9 +14,7 @@ namespace Microsoft.Net.Http.Headers
         {
         }
 
-#pragma warning disable CS8610 // Nullability of reference types in type of parameter doesn't match overridden member.
-        public override bool TryParseValue(StringSegment value, ref int index, [NotNullWhen(true)]out CookieHeaderValue? parsedValue)
-#pragma warning restore CS8610 // Nullability of reference types in type of parameter doesn't match overridden member.
+        public override bool TryParseValue(StringSegment value, ref int index, [MaybeNull] out CookieHeaderValue? parsedValue)
         {
             parsedValue = null;
 

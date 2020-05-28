@@ -472,7 +472,7 @@ namespace Microsoft.Net.Http.Headers
         public static MediaTypeHeaderValue Parse(StringSegment input)
         {
             var index = 0;
-            return SingleValueParser.ParseValue(input, ref index);
+            return SingleValueParser.ParseValue(input, ref index)!;
         }
 
         /// <summary>
@@ -481,10 +481,10 @@ namespace Microsoft.Net.Http.Headers
         /// <param name="input">The <see cref="StringSegment"/> with the media type. The media type constructed here must not have an y</param>
         /// <param name="parsedValue">The parsed <see cref="MediaTypeHeaderValue"/></param>
         /// <returns>True if the value was successfully parsed.</returns>
-        public static bool TryParse(StringSegment input, out MediaTypeHeaderValue parsedValue)
+        public static bool TryParse(StringSegment input, [NotNullWhen(true)] out MediaTypeHeaderValue parsedValue)
         {
             var index = 0;
-            return SingleValueParser.TryParseValue(input, ref index, out parsedValue);
+            return SingleValueParser.TryParseValue(input, ref index, out parsedValue!);
         }
 
         /// <summary>
@@ -492,7 +492,7 @@ namespace Microsoft.Net.Http.Headers
         /// </summary>
         /// <param name="inputs">A list of media types</param>
         /// <returns>The parsed <see cref="MediaTypeHeaderValue"/>.</returns>
-        public static IList<MediaTypeHeaderValue> ParseList(IList<string> inputs)
+        public static IList<MediaTypeHeaderValue> ParseList(IList<string>? inputs)
         {
             return MultipleValueParser.ParseValues(inputs);
         }
@@ -503,7 +503,7 @@ namespace Microsoft.Net.Http.Headers
         /// </summary>
         /// <param name="inputs">A list of media types</param>
         /// <returns>The parsed <see cref="MediaTypeHeaderValue"/>.</returns>
-        public static IList<MediaTypeHeaderValue> ParseStrictList(IList<string> inputs)
+        public static IList<MediaTypeHeaderValue> ParseStrictList(IList<string>? inputs)
         {
             return MultipleValueParser.ParseStrictValues(inputs);
         }
@@ -514,7 +514,7 @@ namespace Microsoft.Net.Http.Headers
         /// <param name="inputs">A list of media types</param>
         /// <param name="parsedValues">The parsed <see cref="MediaTypeHeaderValue"/>.</param>
         /// <returns>True if the value was successfully parsed.</returns>
-        public static bool TryParseList(IList<string> inputs, [NotNullWhen(true)]out IList<MediaTypeHeaderValue>? parsedValues)
+        public static bool TryParseList(IList<string>? inputs, [NotNullWhen(true)] out IList<MediaTypeHeaderValue>? parsedValues)
         {
             return MultipleValueParser.TryParseValues(inputs, out parsedValues);
         }
@@ -525,7 +525,7 @@ namespace Microsoft.Net.Http.Headers
         /// <param name="inputs">A list of media types</param>
         /// <param name="parsedValues">The parsed <see cref="MediaTypeHeaderValue"/>.</param>
         /// <returns>True if the value was successfully parsed.</returns>
-        public static bool TryParseStrictList(IList<string> inputs, [NotNullWhen(true)]out IList<MediaTypeHeaderValue>? parsedValues)
+        public static bool TryParseStrictList(IList<string> inputs, [NotNullWhen(true)] out IList<MediaTypeHeaderValue>? parsedValues)
         {
             return MultipleValueParser.TryParseStrictValues(inputs, out parsedValues);
         }

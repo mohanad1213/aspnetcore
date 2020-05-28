@@ -26,7 +26,7 @@ namespace Microsoft.Net.Http.Headers
             _lastModified = lastModified;
         }
 
-        public RangeConditionHeaderValue(EntityTagHeaderValue entityTag)
+        public RangeConditionHeaderValue(EntityTagHeaderValue? entityTag)
         {
             if (entityTag == null)
             {
@@ -36,7 +36,7 @@ namespace Microsoft.Net.Http.Headers
             _entityTag = entityTag;
         }
 
-        public RangeConditionHeaderValue(string entityTag)
+        public RangeConditionHeaderValue(string? entityTag)
             : this(new EntityTagHeaderValue(entityTag))
         {
         }
@@ -90,13 +90,13 @@ namespace Microsoft.Net.Http.Headers
         public static RangeConditionHeaderValue Parse(StringSegment input)
         {
             var index = 0;
-            return Parser.ParseValue(input, ref index);
+            return Parser.ParseValue(input, ref index)!;
         }
 
-        public static bool TryParse(StringSegment input, [NotNullWhen(true)]out RangeConditionHeaderValue? parsedValue)
+        public static bool TryParse(StringSegment input, [NotNullWhen(true)] out RangeConditionHeaderValue? parsedValue)
         {
             var index = 0;
-            return Parser.TryParseValue(input, ref index, out parsedValue);
+            return Parser.TryParseValue(input, ref index, out parsedValue!);
         }
 
         private static int GetRangeConditionLength(StringSegment input, int startIndex, out RangeConditionHeaderValue? parsedValue)

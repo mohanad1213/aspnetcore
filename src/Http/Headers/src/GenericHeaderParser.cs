@@ -9,7 +9,7 @@ namespace Microsoft.Net.Http.Headers
 {
     internal sealed class GenericHeaderParser<T> : BaseHeaderParser<T>
     {
-        internal delegate int GetParsedValueLengthDelegate(StringSegment value, int startIndex, [MaybeNull]out T parsedValue);
+        internal delegate int GetParsedValueLengthDelegate(StringSegment value, int startIndex, [MaybeNull] out T parsedValue);
 
         private GetParsedValueLengthDelegate _getParsedValueLength;
 
@@ -24,7 +24,7 @@ namespace Microsoft.Net.Http.Headers
             _getParsedValueLength = getParsedValueLength;
         }
 
-        protected override int GetParsedValueLength(StringSegment value, int startIndex, out T parsedValue)
+        protected override int GetParsedValueLength(StringSegment value, int startIndex, [MaybeNull] out T parsedValue)
         {
             return _getParsedValueLength(value, startIndex, out parsedValue);
         }

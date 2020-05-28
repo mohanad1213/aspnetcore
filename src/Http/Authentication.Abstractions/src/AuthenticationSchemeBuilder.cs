@@ -27,12 +27,12 @@ namespace Microsoft.AspNetCore.Authentication
         /// <summary>
         /// The display name for the scheme being built.
         /// </summary>
-        public string DisplayName { get; set; }
+        public string? DisplayName { get; set; }
 
         /// <summary>
         /// The <see cref="IAuthenticationHandler"/> type responsible for this scheme.
         /// </summary>
-        public Type HandlerType { get; set; }
+        public Type? HandlerType { get; set; }
 
         /// <summary>
         /// Builds the <see cref="AuthenticationScheme"/> instance.

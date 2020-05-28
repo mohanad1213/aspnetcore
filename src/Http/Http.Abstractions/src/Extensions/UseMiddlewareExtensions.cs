@@ -198,7 +198,7 @@ namespace Microsoft.AspNetCore.Builder
             }
 
             Expression middlewareInstanceArg = instanceArg;
-            if (methodInfo.DeclaringType != typeof(T))
+            if (methodInfo.DeclaringType != null && methodInfo.DeclaringType != typeof(T))
             {
                 middlewareInstanceArg = Expression.Convert(middlewareInstanceArg, methodInfo.DeclaringType);
             }

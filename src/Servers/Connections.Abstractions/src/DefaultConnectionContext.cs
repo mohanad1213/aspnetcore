@@ -54,13 +54,13 @@ namespace Microsoft.AspNetCore.Connections
             Application = application;
         }
 
-        public override string ConnectionId { get; set; }
+        public override string? ConnectionId { get; set; }
 
         public override IFeatureCollection Features { get; }
 
         public ClaimsPrincipal? User { get; set; }
 
-        public override IDictionary<object, object?> Items { get; set; } = new ConnectionItems();
+        public override IDictionary<object, object?>? Items { get; set; } = new ConnectionItems();
 
         public IDuplexPipe? Application { get; set; }
 

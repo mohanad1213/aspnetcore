@@ -297,13 +297,13 @@ namespace Microsoft.Net.Http.Headers
         public static SetCookieHeaderValue Parse(StringSegment input)
         {
             var index = 0;
-            return SingleValueParser.ParseValue(input, ref index);
+            return SingleValueParser.ParseValue(input, ref index)!;
         }
 
-        public static bool TryParse(StringSegment input, [NotNullWhen(true)]out SetCookieHeaderValue? parsedValue)
+        public static bool TryParse(StringSegment input, [NotNullWhen(true)] out SetCookieHeaderValue? parsedValue)
         {
             var index = 0;
-            return SingleValueParser.TryParseValue(input, ref index, out parsedValue);
+            return SingleValueParser.TryParseValue(input, ref index, out parsedValue!);
         }
 
         public static IList<SetCookieHeaderValue> ParseList(IList<string> inputs)
@@ -316,12 +316,12 @@ namespace Microsoft.Net.Http.Headers
             return MultipleValueParser.ParseStrictValues(inputs);
         }
 
-        public static bool TryParseList(IList<string> inputs, [NotNullWhen(true)]out IList<SetCookieHeaderValue>? parsedValues)
+        public static bool TryParseList(IList<string> inputs, [NotNullWhen(true)] out IList<SetCookieHeaderValue>? parsedValues)
         {
             return MultipleValueParser.TryParseValues(inputs, out parsedValues);
         }
 
-        public static bool TryParseStrictList(IList<string> inputs, [NotNullWhen(true)]out IList<SetCookieHeaderValue>? parsedValues)
+        public static bool TryParseStrictList(IList<string> inputs, [NotNullWhen(true)] out IList<SetCookieHeaderValue>? parsedValues)
         {
             return MultipleValueParser.TryParseStrictValues(inputs, out parsedValues);
         }

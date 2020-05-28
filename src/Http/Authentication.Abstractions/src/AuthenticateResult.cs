@@ -24,22 +24,22 @@ namespace Microsoft.AspNetCore.Authentication
         /// <summary>
         /// The authentication ticket.
         /// </summary>
-        public AuthenticationTicket Ticket { get; protected set; }
+        public AuthenticationTicket? Ticket { get; protected set; }
 
         /// <summary>
         /// Gets the claims-principal with authenticated user identities.
         /// </summary>
-        public ClaimsPrincipal Principal => Ticket?.Principal;
+        public ClaimsPrincipal? Principal => Ticket?.Principal;
 
         /// <summary>
         /// Additional state values for the authentication session.
         /// </summary>
-        public AuthenticationProperties Properties { get; protected set; }
+        public AuthenticationProperties? Properties { get; protected set; }
 
         /// <summary>
         /// Holds failure information from the authentication.
         /// </summary>
-        public Exception Failure { get; protected set; }
+        public Exception? Failure { get; protected set; }
 
         /// <summary>
         /// Indicates that there was no information returned for this authentication scheme.

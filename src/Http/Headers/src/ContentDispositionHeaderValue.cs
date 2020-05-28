@@ -203,13 +203,13 @@ namespace Microsoft.Net.Http.Headers
         public static ContentDispositionHeaderValue Parse(StringSegment input)
         {
             var index = 0;
-            return Parser.ParseValue(input, ref index);
+            return Parser.ParseValue(input, ref index)!;
         }
 
-        public static bool TryParse(StringSegment input, [NotNullWhen(true)]out ContentDispositionHeaderValue? parsedValue)
+        public static bool TryParse(StringSegment input, [NotNullWhen(true)] out ContentDispositionHeaderValue? parsedValue)
         {
             var index = 0;
-            return Parser.TryParseValue(input, ref index, out parsedValue);
+            return Parser.TryParseValue(input, ref index, out parsedValue!);
         }
 
         private static int GetDispositionTypeLength(StringSegment input, int startIndex, out ContentDispositionHeaderValue? parsedValue)
@@ -498,7 +498,7 @@ namespace Microsoft.Net.Http.Headers
         }
 
         // Attempt to decode MIME encoded strings
-        private bool TryDecodeMime(StringSegment input, [NotNullWhen(true)]out string? output)
+        private bool TryDecodeMime(StringSegment input, [NotNullWhen(true)] out string? output)
         {
             Contract.Assert(input != null);
 
@@ -583,7 +583,7 @@ namespace Microsoft.Net.Http.Headers
 
         // Attempt to decode using RFC 5987 encoding.
         // encoding'language'my%20string
-        private bool TryDecode5987(StringSegment input, [NotNullWhen(true)]out string? output)
+        private bool TryDecode5987(StringSegment input, [NotNullWhen(true)] out string? output)
         {
             output = null;
 

@@ -177,13 +177,13 @@ namespace Microsoft.Net.Http.Headers
         public static ContentRangeHeaderValue Parse(StringSegment input)
         {
             var index = 0;
-            return Parser.ParseValue(input, ref index);
+            return Parser.ParseValue(input, ref index)!;
         }
 
         public static bool TryParse(StringSegment input, out ContentRangeHeaderValue parsedValue)
         {
             var index = 0;
-            return Parser.TryParseValue(input, ref index, out parsedValue);
+            return Parser.TryParseValue(input, ref index, out parsedValue!);
         }
 
         private static int GetContentRangeLength(StringSegment input, int startIndex, out ContentRangeHeaderValue? parsedValue)

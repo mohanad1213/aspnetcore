@@ -107,13 +107,13 @@ namespace Microsoft.Net.Http.Headers
         public static StringWithQualityHeaderValue Parse(StringSegment input)
         {
             var index = 0;
-            return SingleValueParser.ParseValue(input, ref index);
+            return SingleValueParser.ParseValue(input, ref index)!;
         }
 
-        public static bool TryParse(StringSegment input, out StringWithQualityHeaderValue parsedValue)
+        public static bool TryParse(StringSegment input, [NotNullWhen(true)] out StringWithQualityHeaderValue parsedValue)
         {
             var index = 0;
-            return SingleValueParser.TryParseValue(input, ref index, out parsedValue);
+            return SingleValueParser.TryParseValue(input, ref index, out parsedValue!);
         }
 
         public static IList<StringWithQualityHeaderValue> ParseList(IList<string> input)
@@ -126,12 +126,12 @@ namespace Microsoft.Net.Http.Headers
             return MultipleValueParser.ParseStrictValues(input);
         }
 
-        public static bool TryParseList(IList<string> input, [NotNullWhen(true)]out IList<StringWithQualityHeaderValue>? parsedValues)
+        public static bool TryParseList(IList<string> input, [NotNullWhen(true)] out IList<StringWithQualityHeaderValue>? parsedValues)
         {
             return MultipleValueParser.TryParseValues(input, out parsedValues);
         }
 
-        public static bool TryParseStrictList(IList<string> input, [NotNullWhen(true)]out IList<StringWithQualityHeaderValue>? parsedValues)
+        public static bool TryParseStrictList(IList<string> input, [NotNullWhen(true)] out IList<StringWithQualityHeaderValue>? parsedValues)
         {
             return MultipleValueParser.TryParseStrictValues(input, out parsedValues);
         }

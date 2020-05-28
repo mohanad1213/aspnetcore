@@ -4,6 +4,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Microsoft.AspNetCore.Http.Features
@@ -93,11 +94,10 @@ namespace Microsoft.AspNetCore.Http.Features
             }
         }
 
+        [return: MaybeNull]
         public TFeature Get<TFeature>()
         {
-#pragma warning disable CS8601 // Possible null reference assignment.
             return (TFeature)this[typeof(TFeature)];
-#pragma warning restore CS8601 // Possible null reference assignment.
         }
 
         public void Set<TFeature>(TFeature instance)

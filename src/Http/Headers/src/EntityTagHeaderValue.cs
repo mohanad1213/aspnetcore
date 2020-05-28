@@ -132,7 +132,7 @@ namespace Microsoft.Net.Http.Headers
         /// <c>true</c> if the <see cref="EntityTagHeaderValue"/> match for the given comparison type,
         /// <c>false</c> if the other value is null or the comparison failed.
         /// </returns>
-        public bool Compare(EntityTagHeaderValue other, bool useStrongComparison)
+        public bool Compare(EntityTagHeaderValue? other, bool useStrongComparison)
         {
             if (other == null)
             {
@@ -152,31 +152,31 @@ namespace Microsoft.Net.Http.Headers
         public static EntityTagHeaderValue Parse(StringSegment input)
         {
             var index = 0;
-            return SingleValueParser.ParseValue(input, ref index);
+            return SingleValueParser.ParseValue(input, ref index)!;
         }
 
         public static bool TryParse(StringSegment input, out EntityTagHeaderValue parsedValue)
         {
             var index = 0;
-            return SingleValueParser.TryParseValue(input, ref index, out parsedValue);
+            return SingleValueParser.TryParseValue(input, ref index, out parsedValue!);
         }
 
-        public static IList<EntityTagHeaderValue> ParseList(IList<string> inputs)
+        public static IList<EntityTagHeaderValue> ParseList(IList<string>? inputs)
         {
             return MultipleValueParser.ParseValues(inputs);
         }
 
-        public static IList<EntityTagHeaderValue> ParseStrictList(IList<string> inputs)
+        public static IList<EntityTagHeaderValue> ParseStrictList(IList<string>? inputs)
         {
             return MultipleValueParser.ParseStrictValues(inputs);
         }
 
-        public static bool TryParseList(IList<string> inputs, [NotNullWhen(true)]out IList<EntityTagHeaderValue>? parsedValues)
+        public static bool TryParseList(IList<string>? inputs, [NotNullWhen(true)] out IList<EntityTagHeaderValue>? parsedValues)
         {
             return MultipleValueParser.TryParseValues(inputs, out parsedValues);
         }
 
-        public static bool TryParseStrictList(IList<string> inputs, [NotNullWhen(true)]out IList<EntityTagHeaderValue>? parsedValues)
+        public static bool TryParseStrictList(IList<string>? inputs, [NotNullWhen(true)] out IList<EntityTagHeaderValue>? parsedValues)
         {
             return MultipleValueParser.TryParseStrictValues(inputs, out parsedValues);
         }

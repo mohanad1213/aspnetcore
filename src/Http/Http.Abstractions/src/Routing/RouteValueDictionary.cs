@@ -71,7 +71,7 @@ namespace Microsoft.AspNetCore.Routing
 
             return new RouteValueDictionary()
             {
-                _arrayStorage = items,
+                _arrayStorage = items!,
                 _count = start,
             };
         }
@@ -97,7 +97,7 @@ namespace Microsoft.AspNetCore.Routing
         /// property names are keys, and property values are the values, and copied into the dictionary.
         /// Only public instance non-index properties are considered.
         /// </remarks>
-        public RouteValueDictionary(object values)
+        public RouteValueDictionary(object? values)
         {
             if (values is RouteValueDictionary dictionary)
             {
@@ -497,7 +497,7 @@ namespace Microsoft.AspNetCore.Routing
         }
 
         /// <inheritdoc />
-        public bool TryGetValue(string key, [NotNullWhen(true)]out object? value)
+        public bool TryGetValue(string key, out object? value)
         {
             if (key == null)
             {
@@ -512,7 +512,7 @@ namespace Microsoft.AspNetCore.Routing
             return TryGetValueSlow(key, out value);
         }
 
-        private bool TryGetValueSlow(string key, [NotNullWhen(true)]out object? value)
+        private bool TryGetValueSlow(string key, [NotNullWhen(true)] out object? value)
         {
             if (_propertyStorage != null)
             {
@@ -551,7 +551,7 @@ namespace Microsoft.AspNetCore.Routing
             if (_propertyStorage != null)
             {
                 var storage = _propertyStorage;
-                
+
                 // If we're converting from properties, it's likely due to an 'add' to make sure we have at least
                 // the default amount of space.
                 capacity = Math.Max(DefaultCapacity, Math.Max(storage.Properties.Length, capacity));
@@ -601,7 +601,7 @@ namespace Microsoft.AspNetCore.Routing
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool TryFindItem(string key, [NotNullWhen(true)]out object? value)
+        private bool TryFindItem(string key, out object? value)
         {
             var array = _arrayStorage;
             var count = _count;
@@ -706,7 +706,7 @@ namespace Microsoft.AspNetCore.Routing
 
             private bool MoveNextRare()
             {
-                var dictionary = _dictionary; 
+                var dictionary = _dictionary;
                 if (dictionary._propertyStorage != null && ((uint)_index < (uint)dictionary._count))
                 {
                     var storage = dictionary._propertyStorage;

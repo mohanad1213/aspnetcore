@@ -13,11 +13,11 @@ namespace Microsoft.Net.Http.Headers
         {
         }
 
-        protected abstract int GetParsedValueLength(StringSegment value, int startIndex, out T parsedValue);
+        protected abstract int GetParsedValueLength(StringSegment value, int startIndex, [MaybeNull] out T parsedValue);
 
-        public sealed override bool TryParseValue(StringSegment value, ref int index, [MaybeNullWhen(false)]out T parsedValue)
+        public sealed override bool TryParseValue(StringSegment value, ref int index, [MaybeNull] out T parsedValue)
         {
-            parsedValue = default(T)!;
+            parsedValue = default;
 
             // If multiple values are supported (i.e. list of values), then accept an empty string: The header may
             // be added multiple times to the request/response message. E.g.
